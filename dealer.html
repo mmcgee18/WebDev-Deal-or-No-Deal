@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .window {
+            width: 100dvw;
+            height: 100dvh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, red, black);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            flex-direction: column;
+        }
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .title > h1 {
+            font-size: 5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 0;
+            text-align: center;
+        }
+
+        .title > img {
+            width: 250px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .arc {
+            display: inline-block;
+            transform: perspective(250px) rotateX(25deg);
+            transform-style: preserve-3d;
+            padding: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: color-cycle 3s linear infinite;
+        }
+        @keyframes color-cycle {
+            0% { color: red; }
+            50% { color: gold; }
+            100% { color: red; }
+        }
+
+        .move {
+            animation: move 5s infinite ease-in-out, rotate 3s infinite ease-in-out;
+            animation-composition: add;
+        }
+        @keyframes move {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes rotate {
+            0% { transform: rotate(2.5deg); }
+            50% { transform: rotate(-2.5deg); }
+            100% { transform: rotate(2.5deg); }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .content > button {
+            width: 200px;
+            height: 80px;
+            font-size: 1.5rem;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content > button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        .content > .case-status-btn:active ~ .info{
+            opacity: 1;
+        }
+
+        .content > .horizontal-btns {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 20px
+        }
+
+        .horizontal-btns > button {
+            width: 300px;
+            height: 100px;
+            font-size: 1.5rem;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .deal-btn {
+            background-color: rgba(0, 255, 0, 0.6);
+        }
+
+        .no-deal-btn {
+            background-color: rgba(255, 0, 0, 0.6);
+        }
+
+        .deal-btn:hover {
+            background-color: rgba(0, 255, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        .no-deal-btn:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        .info {
+            position: absolute;
+            width: 375px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            opacity: 0; /* Change to 0, 100 for testing */
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #2d3748;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .info h2 {
+            text-align: center;
+        }
+
+        .left {
+            left: 20px;
+            top: 20px;
+            height: 450px;
+        }
+
+        .right {
+            right: 20px;
+            top: 20px;
+        }
+
+        .proposal {
+            border: solid 2px black;
+            padding: 0 50px;
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+
+        <div class="title">
+            <h1 class="arc">Dealer Calling</h1>
+            <img class="move" src="src/banker.webp" alt="Banker Image">
+        </div>
+
+        <div class="content">
+            <div class="proposal">
+                <p>TBD: Banker Proposal + PHP</p>
+            </div>
+
+            <div class="horizontal-btns">
+                <button class="deal-btn" onclick="document.location='winner.html'"><h1>DEAL</h1></button>
+                <button class="no-deal-btn" onclick="document.location='game.html'"><h1>NO DEAL</h1></button>
+            </div>
+
+            <button class="case-status-btn"><h1>CASES</h1></button>
+
+            <div class="info left">
+                <p>This is where the status of the Cases will be displayed</p>
+            </div>
+            <div class="info right">
+                <p>More space</p>
+            </div>
+        
+        </div>
+    
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .window {
+            width: 100dvw;
+            height: 100dvh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(-135deg, gold, white);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            flex-direction: column;
+        }
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .title > h1 {
+            font-size: 5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin: 0;
+            text-align: center;
+        }
+
+        .arc {
+            display: inline-block;
+            transform: perspective(250px) rotateX(25deg);
+            transform-style: preserve-3d;
+            padding: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: color-cycle 3s linear infinite;
+        }
+        @keyframes color-cycle {
+            0% { color: green; }
+            22% { color: gold; }
+            50% { color: yellow; }
+            68% { color: gold; }
+            100% { color: green; }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .content > button {
+            width: 300px;
+            height: 100px;
+            font-size: 1.5rem;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, transform 0.3s;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content > button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        .money-rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .money {
+            position: absolute;
+            font-size: 30px;
+            top: -50px;
+            animation: fall linear infinite;
+        }
+
+        .money:nth-child(1) { left: 10%; animation-duration: 7s; animation-delay: 0.5s; }
+        .money:nth-child(2) { left: 20%; animation-duration: 6s; animation-delay: 1s; }
+        .money:nth-child(3) { left: 30%; animation-duration: 5s; animation-delay: 0.5s; }
+        .money:nth-child(4) { left: 40%; animation-duration: 9s; animation-delay: 1.5s; }
+        .money:nth-child(5) { left: 50%; animation-duration: 5.5s; animation-delay: 1.2s; }
+        .money:nth-child(6) { left: 60%; animation-duration: 7.5s; animation-delay: 0.8s; }
+        .money:nth-child(7) { left: 70%; animation-duration: 4.5s; animation-delay: 1s; }
+        .money:nth-child(8) { left: 80%; animation-duration: 5.8s; animation-delay: 1.2s; }
+        .money:nth-child(9) { left: 90%; animation-duration: 8.2s; animation-delay: 0.3s; }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .result {
+            border: solid 2px black;
+            padding: 0 50px;
+            background-color: gold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+
+        <div class="title">
+            <h1 class="arc">Winner!</h1>
+        </div>
+
+        <div class="content">
+            <div class="result">
+                TBD: This is where the game's end result status and how much money won is displayed
+            </div>
+            
+            <button class="return-btn" onclick="document.location='homepage.html'"><h1>Homepage</h1></button>
+        </div>
+
+    <div class="money-rain-container">
+        <div class="money">💵</div>
+        <div class="money">💴</div>
+        <div class="money">💷</div>
+        <div class="money">🎫</div>
+        <div class="money">💰</div>
+        <div class="money">💸</div>
+        <div class="money">💵</div>
+        <div class="money">💴</div>
+        <div class="money">💷</div>
+        <div class="money">🎫</div>
+        <div class="money">💰</div>
+        <div class="money">💸</div>
+    </div>
+
+</body>
+</html>
