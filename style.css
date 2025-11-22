@@ -8,7 +8,7 @@ body,html {
 .window {
     width: 100dvw;
     height: 100dvh;
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    background: url(src/gameBackground.webp);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +21,95 @@ body,html {
     padding: 30px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     border: 3px solid #444;
-    max-width: 800px;
+    max-width: 700px;
     width: 90%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 10px;
+}
+
+.personal {
+    width: 150px;
+    height: 150px;
+    font-size: 1.5rem;
+    color: white;
+    border: 5px solid yellow;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    position: absolute;
+    width: 300px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    opacity: 1; /* Change to 0, 100 for testing */
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    line-height: 1.7;
+    color: black;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+.info h2 {
+    text-align: center;
+}
+
+.left {
+    left: 20px;
+    top: 20px;
+}
+
+.right {
+    right: 20px;
+    top: 20px;
+}
+
+.grid-container {
+    display: grid;
+    /* Defines 5 columns, each taking up an equal fraction of the space (1fr) */
+    grid-template-columns: repeat(5, 1fr);
+    /* Defines 3 rows, automatically sized */
+    grid-template-rows: repeat(3, auto); 
+    gap: 15px; /* Space between the grid items */
+    margin-top: 20px;
+}
+
+.grid-item {
+    background-color: silver; /* Gold color for the items (briefcases) */
+    color: #000;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    /* Ensure items maintain a good aspect ratio if you want them briefcase shaped */
+    aspect-ratio: 1 / 1; 
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+    background-color: #fff;
 }
