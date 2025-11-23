@@ -1,28 +1,75 @@
-body,html {
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+body,
+html {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
+    overflow: auto;
+    font-family: 'Orbitron', 'Rajdhani', 'Exo 2', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.5px;
 }
 
 .window {
     width: 100dvw;
     height: 100dvh;
     background: url(src/gameBackground.webp);
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.window::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(30, 41, 59, 0.82));
+    backdrop-filter: blur(2px);
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.92;
+    }
 }
 
 .game-container {
-    background: linear-gradient(145deg, #2a2a40, #1e1e30);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    border: 3px solid #444;
-    max-width: 700px;
-    width: 90%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow:
+        0 24px 48px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    max-width: 750px;
+    width: 95%;
+    max-height: none;
+    overflow-y: visible;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 
 .content {
@@ -30,86 +77,278 @@ body,html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
-    gap: 10px;
+    margin-top: 20px;
+    gap: 16px;
 }
 
 .personal {
-    width: 150px;
-    height: 150px;
-    font-size: 1.5rem;
-    color: white;
-    border: 5px solid yellow;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    width: 280px;
+    height: 70px;
+    font-size: 1.4rem;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.2), rgba(251, 191, 36, 0.15));
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(250, 204, 21, 0.8);
+    border-radius: 12px;
+    box-shadow:
+        0 12px 32px rgba(250, 204, 21, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .info {
     position: absolute;
-    width: 300px;
-    height: 600px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    padding: 10px;
-    opacity: 1; /* Change to 0, 100 for testing */
-
-    font-family: 'Poppins', sans-serif;
-    font-size: 30px;
-    line-height: 1.7;
-    color: black;
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    width: 240px;
+    height: 480px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    padding: 16px;
+    opacity: 1;
+    font-family: 'Orbitron', 'Rajdhani', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.5px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    overflow-y: auto;
 }
 
 .info h2 {
     text-align: center;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    margin-top: 0;
 }
 
 .left {
-    left: 20px;
-    top: 20px;
+    left: 16px;
+    top: 16px;
 }
 
 .right {
-    right: 20px;
-    top: 20px;
+    right: 16px;
+    top: 16px;
 }
 
 .grid-container {
     display: grid;
-    /* Defines 5 columns, each taking up an equal fraction of the space (1fr) */
     grid-template-columns: repeat(5, 1fr);
-    /* Defines 3 rows, automatically sized */
-    grid-template-rows: repeat(3, auto); 
-    gap: 15px; /* Space between the grid items */
-    margin-top: 20px;
+    grid-template-rows: repeat(3, auto);
+    gap: 10px;
+    margin-top: 12px;
+    padding: 4px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .grid-item {
-    background-color: silver; /* Gold color for the items (briefcases) */
-    color: #000;
-    padding: 20px;
-    border-radius: 8px;
+    /* Metallic aluminum briefcase appearance */
+    background: linear-gradient(145deg, #e0e5ec 0%, #c5cdd6 50%, #a8b2bf 100%);
+    backdrop-filter: blur(8px);
+    color: #2d3748;
+    padding: 14px;
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-    /* Ensure items maintain a good aspect ratio if you want them briefcase shaped */
-    aspect-ratio: 1 / 1; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    aspect-ratio: 1 / 1;
+
+    /* Metallic depth and shine */
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.7),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-top: 2px solid rgba(255, 255, 255, 0.9);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Metallic shine effect */
+.grid-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.6) 0%,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(0, 0, 0, 0.05) 100%);
+    opacity: 1;
+    pointer-events: none;
+}
+
+/* Subtle reflection stripe */
+.grid-item::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -50%;
+    width: 200%;
+    height: 30%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 100%);
+    transform: rotate(-45deg);
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .grid-item:hover {
-    transform: scale(1.05);
-    background-color: #fff;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(145deg, #edf2f7 0%, #d4dbe3 50%, #b8c4d1 100%);
+}
+
+.grid-item:active {
+    transform: translateY(-2px) scale(1.01);
+}
+
+/* Banker Offer Popup - Premium Golden Style */
+.banker-offer {
+    background: linear-gradient(135deg,
+            rgba(250, 204, 21, 0.95) 0%,
+            rgba(251, 191, 36, 0.9) 50%,
+            rgba(217, 119, 6, 0.85) 100%);
+    backdrop-filter: blur(16px) saturate(200%);
+    -webkit-backdrop-filter: blur(16px) saturate(200%);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 450px;
+
+    /* Multi-layer bevel lighting effect */
+    box-shadow:
+        0 20px 40px rgba(217, 119, 6, 0.35),
+        0 10px 20px rgba(0, 0, 0, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.6),
+        inset 0 -2px 8px rgba(180, 83, 9, 0.4);
+
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-top: 3px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 3px solid rgba(180, 83, 9, 0.6);
+
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Inner glow effect */
+.banker-offer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%,
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0) 60%);
+    pointer-events: none;
+}
+
+/* Subtle shine animation */
+.banker-offer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.15) 50%,
+            transparent 70%);
+    animation: shine 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+
+    0%,
+    100% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    50% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* Offer label styling */
+.banker-offer .offer-label {
+    font-family: 'Orbitron', 'Rajdhani', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(120, 53, 15, 0.9);
+    text-shadow:
+        0 1px 2px rgba(255, 255, 255, 0.8),
+        0 -1px 1px rgba(180, 83, 9, 0.3);
+    margin-bottom: 8px;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+/* Offer amount - main focus */
+.banker-offer .offer-amount {
+    font-family: 'Orbitron', 'Rajdhani', monospace;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 1px 0 rgba(255, 255, 255, 0.3),
+        0 -1px 0 rgba(120, 53, 15, 0.5);
+    letter-spacing: -1px;
+    line-height: 1;
+    margin: 0;
+    display: block;
+    position: relative;
+    z-index: 1;
+
+    /* Subtle glow */
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+/* Responsive scaling */
+@media (max-width: 768px) {
+    .banker-offer {
+        padding: 16px;
+        margin: 12px auto;
+    }
+
+    .banker-offer .offer-amount {
+        font-size: 2rem;
+    }
 }
