@@ -166,12 +166,12 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
         .grid-item {
             background-color: silver;
             color: #000;
-            padding: 20px;
+            padding: 12px;
             border-radius: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
@@ -180,9 +180,42 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
         }
         
         .grid-item.user-selected {
-            background-color: gold !important;
-            border: 3px solid red;
+            /* Premium golden briefcase for player's case */
+            background: linear-gradient(145deg, #ffd700 0%, #ffed4e 50%, #daa520 100%) !important;
+            border: 3px solid rgba(218, 165, 32, 0.8) !important;
+            border-top: 3px solid rgba(255, 255, 255, 0.9) !important;
+            border-bottom: 3px solid rgba(139, 69, 19, 0.6) !important;
             transform: scale(1.1);
+            color: #654321 !important;
+            
+            /* Enhanced golden glow */
+            box-shadow:
+                0 0 30px rgba(255, 215, 0, 0.6),
+                0 12px 24px rgba(0, 0, 0, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                inset 0 -2px 4px rgba(184, 134, 11, 0.4) !important;
+            
+            animation: goldenPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes goldenPulse {
+            0%, 100% {
+                box-shadow:
+                    0 0 30px rgba(255, 215, 0, 0.6),
+                    0 12px 24px rgba(0, 0, 0, 0.3),
+                    0 4px 8px rgba(0, 0, 0, 0.2),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                    inset 0 -2px 4px rgba(184, 134, 11, 0.4);
+            }
+            50% {
+                box-shadow:
+                    0 0 40px rgba(255, 215, 0, 0.8),
+                    0 12px 24px rgba(0, 0, 0, 0.3),
+                    0 4px 8px rgba(0, 0, 0, 0.2),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                    inset 0 -2px 4px rgba(184, 134, 11, 0.4);
+            }
         }
         
         .grid-item.opened {
@@ -205,11 +238,11 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
         .personal.user-case {
             background-color: rgba(255, 215, 0, 0.3);
             border: 3px solid gold;
-            width: 150px;
-            height: 150px;
+            width: 280px;
+            height: 70px;
             font-size: 1.5rem;
             color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
             text-align: center;
             display: flex;
@@ -226,29 +259,6 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
             text-shadow: 1px 1px 2px black;
         }
         
-        .banker-offer {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            border: 3px solid #b8860b;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .banker-offer h2 {
-            color: #8b4513;
-            margin: 0 0 10px 0;
-            font-size: 1.8rem;
-        }
-        
-        .offer-amount {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #228b22;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-        
         .deal-buttons {
             display: flex;
             gap: 20px;
@@ -257,13 +267,18 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
         }
         
         .deal-btn, .no-deal-btn {
-            padding: 15px 30px;
-            font-size: 1.5rem;
+            padding: 12px 24px;
+            font-size: 1.1rem;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.2s;
             font-weight: bold;
+            width: 140px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .deal-btn {
@@ -308,18 +323,19 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
         
         .debug-reset-btn {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            bottom: 20px;
+            right: 20px;
             background: linear-gradient(135deg, #ff6b6b, #ee5a52);
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 20px;
             font-size: 0.9rem;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             z-index: 1000;
-            opacity: 0.7;
-            transition: opacity 0.3s;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         
         .debug-reset-btn:hover {
@@ -334,17 +350,54 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
             text-align: center;
         }
         
-        .debug-info {
+        .debug-info-container {
             position: fixed;
             top: 10px;
             left: 10px;
+            z-index: 1000;
+        }
+        
+        .debug-info-icon {
+            width: 32px;
+            height: 32px;
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            z-index: 1000;
-            max-width: 200px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .debug-info-icon:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+        
+        .debug-info {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            min-width: 280px;
+            max-width: 350px;
+            line-height: 1.6;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .debug-info-container:hover .debug-info {
+            opacity: 1;
+            visibility: visible;
         }
         
         .grid-item:hover:not(.opened):not(.user-selected) {
@@ -383,6 +436,12 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             margin: 20px 0;
         }
+        
+        /* Fix game container to prevent cropping */
+        .game-container {
+            max-height: 85vh !important;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
@@ -395,14 +454,17 @@ $cases_opened_this_round = $_SESSION['cases_opened_this_round'];
     </form>
 
     <!-- Debug Information -->
-    <div class="debug-info">
-        <strong>Debug Info:</strong><br>
-        Phase: <?php echo $game_phase; ?><br>
-        Round: <?php echo $current_round; ?><br>
-        User Case: <?php echo $user_case_number ?: 'Not set'; ?><br>
-        Opened: <?php echo count($opened_cases); ?>/14<br>
-        This Round: <?php echo $cases_opened_this_round; ?><br>
-        Banker Offers: <?php echo count($banker_offers); ?>
+    <div class="debug-info-container">
+        <div class="debug-info-icon" title="Debug Info">i</div>
+        <div class="debug-info">
+            <strong>Debug Info:</strong><br>
+            Phase: <?php echo $game_phase; ?><br>
+            Round: <?php echo $current_round; ?><br>
+            User Case: <?php echo $user_case_number ?: 'Not set'; ?><br>
+            Opened: <?php echo count($opened_cases); ?>/14<br>
+            This Round: <?php echo $cases_opened_this_round; ?><br>
+            Banker Offers: <?php echo count($banker_offers); ?>
+        </div>
     </div>
 
     <div class="window">
